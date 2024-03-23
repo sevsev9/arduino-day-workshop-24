@@ -209,6 +209,7 @@ void webSocketEvent(WStype_t type, uint8_t* payload, size_t length) {
   switch (type) {
     case WStype_DISCONNECTED:
       Serial.printf("[WebSocket] Disconnected!\n");
+      ws_connected = false;
       break;
     case WStype_CONNECTED:
       Serial.printf("[WebSocket] Connected to server\n");
