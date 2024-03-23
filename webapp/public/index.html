@@ -43,8 +43,8 @@
 
       const now = new Date().toLocaleTimeString();
       chart.data.labels.push(now);
-      chart.data.datasets[0].data.push(data.temp);
-      chart.data.datasets[1].data.push(data.hmd);
+      chart.data.datasets[0].data.push(data.temperature);
+      chart.data.datasets[1].data.push(data.humidity);
       chart.update();
 
       // Keep the chart displaying only the latest 20 data points

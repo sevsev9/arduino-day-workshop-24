@@ -8,13 +8,12 @@
 #include <WebSocketsClient.h>
 
 
-
 // WiFi credentials.
-const char* ssid = "GRANDGARAGE-PUBLIC";
-const char* password = "wifi4members";
+const char* ssid = "<insert wifi name>";
+const char* password = "<insert password>";
 
 // WebSocket server details.
-const char* webSocketServer = "10.6.0.112";
+const char* webSocketServer = "<insert websocket server ip>";
 const int port = 3000;
 
 // Sensor Settings
