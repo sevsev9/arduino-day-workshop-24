@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
-import { Server as WebSocketServer } from 'ws';
+import { Server as WebSocketServer, WebSocket } from 'ws';
 import { createServer, Server } from 'http';
+import { AddressInfo } from 'net';
 
 const app: Express = express();
 const server: Server = createServer(app);
@@ -25,5 +26,6 @@ wss.on('connection', (ws) => {
 app.use(express.static('public'));
 
 server.listen(3000, () => {
-  console.log('Listening on http://localhost:3000');
+  const { port } = server.address() as AddressInfo;
+  console.log(`Server started on port ${port}`);
 });

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Live Data Graph</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
   <canvas id="liveChart" width="800" height="450"></canvas>
   <script>
@@ -28,8 +30,17 @@
     });
 
     const ws = new WebSocket('ws://localhost:3000');
-    ws.onmessage = function (event) {
-      const data = JSON.parse(event.data);
+    ws.onmessage = async function (event) {
+
+      const text = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.readAsText(event.data);
+      });
+
+      const data = JSON.parse(text);
+      console.log("Received data:", data);
+
       const now = new Date().toLocaleTimeString();
       chart.data.labels.push(now);
       chart.data.datasets[0].data.push(data.temp);
@@ -47,4 +58,5 @@
     };
   </script>
 </body>
+
 </html>
